@@ -1,71 +1,70 @@
 # php_practice
 QUESTION 1:
-index.html
-<!DOCTYPE html>
-<html>
-<head>
-    <title>File Upload</title>
-</head>
-<body>
-    <form action="upload.php" method="POST" enctype="multipart/form-data">
-        <label for="file">Select a file:</label>
-        <input type="file" name="file" id="file">
-        <input type="submit" value="Upload File">
-    </form>
-</body>
-</html>
-
-
-upload.php:
-
-<?php
-$target_dir = "C:/xampp/htdocs/cwharry/";
-$target_file = $target_dir . basename($_FILES["file"]["name"]);
-
-// if everything is ok, try to upload file
+%{
+#include <stdio.h>
+#include <math.h>
+int count=0,countx=0 , countz=0; 
+%}
+%%
+[a] {count++;}
+[b] {countx++; }
+[c] {countz++ ; }
+%%
+int main()
 {
-  if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-    echo "The file "." has been uploaded.";
-  } else {
-    echo "Sorry, there was an error uploading your file.";
-  }
+yylex();
+if(count%2==0 && countx%2==1 && countz%2==0)
+printf("String accepted");
+else
+printf("String not accepted");
+return 0;
 }
-?>
-
-
-
-QUESTION 2:
-
-function addCommasToInteger(number) {
-  // Convert the number to a string
-  var numberString = number.toString();
-
-  // Split the string into an array of characters
-  var chars = numberString.split('');
-
-  // Initialize variables
-  var result = '';
-  var count = 0;
-
-  // Iterate through the characters in reverse order
-  for (var i = chars.length - 1; i >= 0; i--) {
-    // Add the current character to the result
-    result = chars[i] + result;
-
-    // Increment the count
-    count++;
-
-    // Add a comma after every third character
-    if (count % 3 === 0 && i !== 0) {
-      result = ',' + result;
-    }
-  }
-
-  // Return the result
-  return result;
+int yywrap()
+{
+return 1;
 }
 
-// Example usage
-var number = 1234567;
-var formattedNumber = addCommasToInteger(number);
-console.log(formattedNumber); // Output: "1,234,567"
+
+
+
+
+Question 2:
+
+%{
+#include<stdio.h>
+#include<stdlib.h>
+int flag,c,j;
+%}
+%%
+[0-9]+ {c=atoi(yytext);
+if(c==2)
+{
+printf("\n Prime number");
+}
+else if(c==0 || c==1)
+{
+printf("\n Not a Prime number");
+}
+else
+{
+for(j=2;j<c;j++)
+{
+if(c%j==0)
+flag=1;
+}
+if(flag==1)
+printf("\n Not a prime number");
+else if(flag==0)
+printf("\n Prime number");
+}
+}
+%%int main()
+{
+printf("Input:\n");
+yylex();
+return 0;
+}
+int yywrap()
+{
+return 1;
+}
